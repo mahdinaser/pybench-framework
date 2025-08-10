@@ -1,0 +1,24 @@
+Rank,Library,Geometric Mean (s),Std Dev,Coefficient of Variation,Measurements,Performance Status
+1,networkx,0.000060,0.000078,1.3026,4,🔴 Unstable
+2,torch,0.000226,0.000230,1.0168,4,🔴 Unstable
+3,scipy,0.000394,0.000064,0.1624,4,🟡 Variable
+4,tensorflow,0.000510,0.000233,0.4565,4,🔴 Unstable
+5,sympy,0.000896,0.005900,6.5848,4,🔴 Unstable
+6,psycopg2,0.001236,0.000000,0.0000,4,🟢 Stable
+7,numpy,0.001542,0.002952,1.9146,4,🔴 Unstable
+8,xarray,0.002718,0.005660,2.0824,4,🔴 Unstable
+9,duckdb,0.006773,0.003642,0.5377,4,🔴 Unstable
+10,redis,0.007635,0.000000,0.0000,4,🟢 Stable
+11,pyarrow,0.007893,0.017821,2.2579,4,🔴 Unstable
+12,cython,0.008514,0.000000,0.0000,4,🟢 Stable
+13,modin,0.013499,0.002372,0.1757,4,🟡 Variable
+14,avro,0.017966,0.000000,0.0000,4,🟢 Stable
+15,pandas,0.021846,0.056875,2.6034,4,🔴 Unstable
+16,jax,0.024044,0.001783,0.0742,4,🟢 Stable
+17,clickhouse,0.024085,0.000000,0.0000,4,🟢 Stable
+18,protobuf,0.028104,0.000000,0.0000,4,🟢 Stable
+19,collections_std,0.028719,0.087737,3.0550,4,🔴 Unstable
+20,pymongo,0.038046,0.000000,0.0000,4,🟢 Stable
+21,dask,0.093084,0.211523,2.2724,4,🔴 Unstable
+22,sqlalchemy,0.197538,0.725688,3.6737,4,🔴 Unstable
+23,sqlite3_std,0.259914,0.851986,3.2779,4,🔴 Unstable

@@ -1,0 +1,11 @@
+Rank,Library,Geometric Mean (s),Std Dev,Coefficient of Variation,Measurements,Performance Status
+1,numpy,0.001608,0.004373,2.7196,4,🔴 Unstable
+2,protobuf,0.005607,0.000000,0.0000,4,🟢 Stable
+3,cython,0.009914,0.000000,0.0000,4,🟢 Stable
+4,clickhouse,0.014842,0.000000,0.0000,4,🟢 Stable
+5,psycopg2,0.025018,0.000000,0.0000,4,🟢 Stable
+6,avro,0.032998,0.000000,0.0000,4,🟢 Stable
+7,pymongo,0.044417,0.000000,0.0000,4,🟢 Stable
+8,redis,0.044501,0.000000,0.0000,4,🟢 Stable
+9,pandas,0.075907,0.286822,3.7786,4,🔴 Unstable
+10,duckdb,0.124631,0.352799,2.8307,4,🔴 Unstable

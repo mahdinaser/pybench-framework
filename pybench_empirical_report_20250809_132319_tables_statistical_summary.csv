@@ -1,0 +1,6 @@
+Operation,Libraries Tested,Total Measurements,Pairwise Comparisons,Significant Differences,Significance Rate (%)
+Create,42,168,861,861,100.0%
+Filter,36,144,630,630,100.0%
+Aggregate,23,92,253,253,100.0%
+Join,10,40,45,45,100.0%
+Sort,10,40,45,45,100.0%

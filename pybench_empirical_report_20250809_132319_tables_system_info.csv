@@ -1,0 +1,14 @@
+Property,Value
+Framework Version,PyBench v1.0
+Report Date,2025-08-09T13:23:19.533803
+Python Version,3.11.0
+Platform,darwin
+CPU Cores (Logical),14
+CPU Cores (Physical),14
+Memory (GB),36.0
+Random Seed,42
+Trials per Measurement,3
+Confidence Level,95%
+Total Experiments,484
+Total Platforms,50
+Available Platforms,46

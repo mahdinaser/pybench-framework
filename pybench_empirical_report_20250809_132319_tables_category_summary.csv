@@ -1,0 +1,8 @@
+Category,Total Platforms,Available,Coverage (%),Best Performer,Best Time (s),Platforms
+Array Computing,8,7,87.5%,scipy,0.000094,"numpy, pyarrow, torch, tensorflow, jax..."
+DataFrame,8,5,62.5%,pandas,0.004583,"pandas, polars, dask, modin, vaex..."
+Machine Learning,6,6,100.0%,sklearn,0.000010,"sklearn, xgboost, lightgbm, catboost, statsmodels..."
+SQL Engine,6,6,100.0%,psycopg2,0.001236,"duckdb, sqlalchemy, clickhouse, psycopg2, pymongo..."
+Serialization,8,8,100.0%,msgpack,0.000053,"ujson, orjson, msgpack, avro, protobuf..."
+Specialized,4,4,100.0%,sympy,0.000024,"networkx, sympy, numba, cython"
+Standard Library,10,10,100.0%,bisect_std,0.000023,"json_std, csv_std, pickle_std, sqlite3_std, collections_std..."

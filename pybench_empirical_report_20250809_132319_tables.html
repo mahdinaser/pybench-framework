@@ -1,0 +1,3190 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PyBench Performance Analysis Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; text-align: center; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; border-left: 4px solid #3498db; padding-left: 10px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; }
+        th { background: linear-gradient(135deg, #3498db, #2980b9); color: white; padding: 12px; text-align: left; border: 1px solid #ddd; }
+        td { padding: 8px 12px; border: 1px solid #ddd; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #e3f2fd; }
+        .metadata { background: #ecf0f1; padding: 15px; border-radius: 5px; margin: 20px 0; }
+        .performance-stable { color: #27ae60; font-weight: bold; }
+        .performance-variable { color: #f39c12; font-weight: bold; }
+        .performance-unstable { color: #e74c3c; font-weight: bold; }
+        .available { color: #27ae60; font-weight: bold; }
+        .not-available { color: #e74c3c; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 PyBench Performance Analysis Report</h1>
+        
+        <div class="metadata">
+            <h3>📊 Report Metadata</h3>
+            <p><strong>Generated:</strong> 2025-08-09 13:24:30</p>
+            <p><strong>Source:</strong> pybench_empirical_report_20250809_132319.json</p>
+            <p><strong>Total Experiments:</strong> 484</p>
+            <p><strong>Framework:</strong> PyBench v1.0</p>
+        </div>
+<h2>📋 Platform Availability Status</h2>
+<table id="platform-availability">
+<thead>
+<tr>
+<th>Platform ID</th>
+<th>Status</th>
+<th>Category</th>
+<th>Subcategory</th>
+<th>Version</th>
+<th>Import Path</th>
+<th>Error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="">cupy</td>
+<td class="not-available">❌ Not Available</td>
+<td class="">Array Computing</td>
+<td class="">Unknown</td>
+<td class="">Unknown</td>
+<td class="">Unknown</td>
+<td class="">No module named 'cupy'</td>
+</tr>
+<tr>
+<td class="">jax</td>
+<td class="available">✅ Available</td>
+<td class="">Array Computing</td>
+<td class="">JIT Compiled</td>
+<td class="">0.7.0</td>
+<td class="">jax</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">numpy</td>
+<td class="available">✅ Available</td>
+<td class="">Array Computing</td>
+<td class="">Dense Arrays</td>
+<td class="">1.26.0</td>
+<td class="">numpy</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">pyarrow</td>
+<td class="available">✅ Available</td>
+<td class="">Array Computing</td>
+<td class="">Columnar</td>
+<td class="">14.0.1</td>
+<td class="">pyarrow</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">scipy</td>
+<td class="available">✅ Available</td>
+<td class="">Array Computing</td>
+<td class="">Scientific</td>
+<td class="">1.15.2</td>
+<td class="">scipy</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">tensorflow</td>
+<td class="available">✅ Available</td>
+<td class="">Array Computing</td>
+<td class="">Tensors</td>
+<td class="">2.19.0</td>
+<td class="">tensorflow</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">torch</td>
+<td class="available">✅ Available</td>
+<td class="">Array Computing</td>
+<td class="">Tensors</td>
+<td class="">2.7.1</td>
+<td class="">torch</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">xarray</td>
+<td class="available">✅ Available</td>
+<td class="">Array Computing</td>
+<td class="">Labeled Arrays</td>
+<td class="">2025.7.1</td>
+<td class="">xarray</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">cudf</td>
+<td class="not-available">❌ Not Available</td>
+<td class="">DataFrame</td>
+<td class="">Unknown</td>
+<td class="">Unknown</td>
+<td class="">Unknown</td>
+<td class="">No module named 'cudf'</td>
+</tr>
+<tr>
+<td class="">dask</td>
+<td class="available">✅ Available</td>
+<td class="">DataFrame</td>
+<td class="">Distributed</td>
+<td class="">2025.7.0</td>
+<td class="">dask.dataframe</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">datatable</td>
+<td class="not-available">❌ Not Available</td>
+<td class="">DataFrame</td>
+<td class="">Unknown</td>
+<td class="">Unknown</td>
+<td class="">Unknown</td>
+<td class="">dlopen(/Users/mahdinaser/workspace/deepeval-env/lib/python3.11/site-packages/datatable/lib/_datatable.cpython-311-darwin.so, 0x0002): tried: '/Users/mahdinaser/workspace/deepeval-env/lib/python3.11/site-packages/datatable/lib/_datatable.cpython-311-darwin.so' (mach-o file, but is an incompatible architecture (have 'x86_64', need 'arm64e' or 'arm64')), '/System/Volumes/Preboot/Cryptexes/OS/Users/mahdinaser/workspace/deepeval-env/lib/python3.11/site-packages/datatable/lib/_datatable.cpython-311-darwin.so' (no such file), '/Users/mahdinaser/workspace/deepeval-env/lib/python3.11/site-packages/datatable/lib/_datatable.cpython-311-darwin.so' (mach-o file, but is an incompatible architecture (have 'x86_64', need 'arm64e' or 'arm64'))</td>
+</tr>
+<tr>
+<td class="">koalas</td>
+<td class="available">✅ Available</td>
+<td class="">DataFrame</td>
+<td class="">Spark</td>
+<td class="">4.0.0</td>
+<td class="">pyspark.pandas</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">modin</td>
+<td class="available">✅ Available</td>
+<td class="">DataFrame</td>
+<td class="">Parallel</td>
+<td class="">0.34.1</td>
+<td class="">modin.pandas</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">pandas</td>
+<td class="available">✅ Available</td>
+<td class="">DataFrame</td>
+<td class="">Row-oriented</td>
+<td class="">2.3.1</td>
+<td class="">pandas</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">polars</td>
+<td class="available">✅ Available</td>
+<td class="">DataFrame</td>
+<td class="">Columnar</td>
+<td class="">0.18.15</td>
+<td class="">polars</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">vaex</td>
+<td class="not-available">❌ Not Available</td>
+<td class="">DataFrame</td>
+<td class="">Unknown</td>
+<td class="">Unknown</td>
+<td class="">Unknown</td>
+<td class="">No module named 'vaex'</td>
+</tr>
+<tr>
+<td class="">catboost</td>
+<td class="available">✅ Available</td>
+<td class="">Machine Learning</td>
+<td class="">Gradient Boosting</td>
+<td class="">1.2.8</td>
+<td class="">catboost</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">lightgbm</td>
+<td class="available">✅ Available</td>
+<td class="">Machine Learning</td>
+<td class="">Gradient Boosting</td>
+<td class="">4.6.0</td>
+<td class="">lightgbm</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">optuna</td>
+<td class="available">✅ Available</td>
+<td class="">Machine Learning</td>
+<td class="">Hyperparameter Optimization</td>
+<td class="">4.4.0</td>
+<td class="">optuna</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">sklearn</td>
+<td class="available">✅ Available</td>
+<td class="">Machine Learning</td>
+<td class="">General ML</td>
+<td class="">1.3.1</td>
+<td class="">sklearn</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">statsmodels</td>
+<td class="available">✅ Available</td>
+<td class="">Machine Learning</td>
+<td class="">Statistical</td>
+<td class="">0.14.5</td>
+<td class="">statsmodels</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">xgboost</td>
+<td class="available">✅ Available</td>
+<td class="">Machine Learning</td>
+<td class="">Gradient Boosting</td>
+<td class="">3.0.2</td>
+<td class="">xgboost</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">clickhouse</td>
+<td class="available">✅ Available</td>
+<td class="">SQL Engine</td>
+<td class="">OLAP</td>
+<td class="">0.2.9</td>
+<td class="">clickhouse_driver</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">duckdb</td>
+<td class="available">✅ Available</td>
+<td class="">SQL Engine</td>
+<td class="">OLAP</td>
+<td class="">1.3.2</td>
+<td class="">duckdb</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">psycopg2</td>
+<td class="available">✅ Available</td>
+<td class="">SQL Engine</td>
+<td class="">PostgreSQL</td>
+<td class="">2.9.10 (dt dec pq3 ext lo64)</td>
+<td class="">psycopg2</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">pymongo</td>
+<td class="available">✅ Available</td>
+<td class="">SQL Engine</td>
+<td class="">NoSQL</td>
+<td class="">3.11.0</td>
+<td class="">pymongo</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">redis</td>
+<td class="available">✅ Available</td>
+<td class="">SQL Engine</td>
+<td class="">Key-Value</td>
+<td class="">5.3.1</td>
+<td class="">redis</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">sqlalchemy</td>
+<td class="available">✅ Available</td>
+<td class="">SQL Engine</td>
+<td class="">ORM</td>
+<td class="">2.0.37</td>
+<td class="">sqlalchemy</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">avro</td>
+<td class="available">✅ Available</td>
+<td class="">Serialization</td>
+<td class="">Schema-based</td>
+<td class="">1.12.0</td>
+<td class="">avro</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">h5py</td>
+<td class="available">✅ Available</td>
+<td class="">Serialization</td>
+<td class="">Scientific</td>
+<td class="">3.13.0</td>
+<td class="">h5py</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">msgpack</td>
+<td class="available">✅ Available</td>
+<td class="">Serialization</td>
+<td class="">Binary</td>
+<td class="">1.1.1</td>
+<td class="">msgpack</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">orjson</td>
+<td class="available">✅ Available</td>
+<td class="">Serialization</td>
+<td class="">JSON</td>
+<td class="">3.10.15</td>
+<td class="">orjson</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">protobuf</td>
+<td class="available">✅ Available</td>
+<td class="">Serialization</td>
+<td class="">Binary</td>
+<td class="">5.29.3</td>
+<td class="">google.protobuf</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">toml</td>
+<td class="available">✅ Available</td>
+<td class="">Serialization</td>
+<td class="">Config</td>
+<td class="">0.10.2</td>
+<td class="">toml</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">ujson</td>
+<td class="available">✅ Available</td>
+<td class="">Serialization</td>
+<td class="">JSON</td>
+<td class="">5.10.0</td>
+<td class="">ujson</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">yaml</td>
+<td class="available">✅ Available</td>
+<td class="">Serialization</td>
+<td class="">Human-readable</td>
+<td class="">6.0.1</td>
+<td class="">yaml</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">cython</td>
+<td class="available">✅ Available</td>
+<td class="">Specialized</td>
+<td class="">C Extensions</td>
+<td class="">3.1.2</td>
+<td class="">cython</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">networkx</td>
+<td class="available">✅ Available</td>
+<td class="">Specialized</td>
+<td class="">Graph Processing</td>
+<td class="">3.4.2</td>
+<td class="">networkx</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">numba</td>
+<td class="available">✅ Available</td>
+<td class="">Specialized</td>
+<td class="">JIT Compiler</td>
+<td class="">0.61.2</td>
+<td class="">numba</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">sympy</td>
+<td class="available">✅ Available</td>
+<td class="">Specialized</td>
+<td class="">Symbolic Math</td>
+<td class="">1.14.0</td>
+<td class="">sympy</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">bisect_std</td>
+<td class="available">✅ Available</td>
+<td class="">Standard Library</td>
+<td class="">Binary Search</td>
+<td class="">unknown</td>
+<td class="">bisect</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">collections_std</td>
+<td class="available">✅ Available</td>
+<td class="">Standard Library</td>
+<td class="">Data Structures</td>
+<td class="">unknown</td>
+<td class="">collections</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">csv_std</td>
+<td class="available">✅ Available</td>
+<td class="">Standard Library</td>
+<td class="">Tabular Data</td>
+<td class="">1.0</td>
+<td class="">csv</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">functools_std</td>
+<td class="available">✅ Available</td>
+<td class="">Standard Library</td>
+<td class="">Functional Tools</td>
+<td class="">unknown</td>
+<td class="">functools</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">heapq_std</td>
+<td class="available">✅ Available</td>
+<td class="">Standard Library</td>
+<td class="">Priority Queue</td>
+<td class="">unknown</td>
+<td class="">heapq</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">itertools_std</td>
+<td class="available">✅ Available</td>
+<td class="">Standard Library</td>
+<td class="">Functional Programming</td>
+<td class="">unknown</td>
+<td class="">itertools</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">json_std</td>
+<td class="available">✅ Available</td>
+<td class="">Standard Library</td>
+<td class="">Serialization</td>
+<td class="">2.0.9</td>
+<td class="">json</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">operator_std</td>
+<td class="available">✅ Available</td>
+<td class="">Standard Library</td>
+<td class="">Operators</td>
+<td class="">unknown</td>
+<td class="">operator</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">pickle_std</td>
+<td class="available">✅ Available</td>
+<td class="">Standard Library</td>
+<td class="">Serialization</td>
+<td class="">unknown</td>
+<td class="">pickle</td>
+<td class=""></td>
+</tr>
+<tr>
+<td class="">sqlite3_std</td>
+<td class="available">✅ Available</td>
+<td class="">Standard Library</td>
+<td class="">Database</td>
+<td class="">unknown</td>
+<td class="">sqlite3</td>
+<td class=""></td>
+</tr>
+</tbody>
+</table>
+<h2>🏆 Performance Rankings - CREATE Operation</h2>
+<table id="rankings-create">
+<thead>
+<tr>
+<th>Rank</th>
+<th>Library</th>
+<th>Geometric Mean (s)</th>
+<th>Std Dev</th>
+<th>Coefficient of Variation</th>
+<th>Measurements</th>
+<th>Performance Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="">1</td>
+<td class="">sklearn</td>
+<td class="">0.000014</td>
+<td class="">0.000004</td>
+<td class="">0.2474</td>
+<td class="">4</td>
+<td class="performance-variable">🟡 Variable</td>
+</tr>
+<tr>
+<td class="">2</td>
+<td class="">lightgbm</td>
+<td class="">0.000022</td>
+<td class="">0.000007</td>
+<td class="">0.3009</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">3</td>
+<td class="">bisect_std</td>
+<td class="">0.000026</td>
+<td class="">0.000005</td>
+<td class="">0.1999</td>
+<td class="">4</td>
+<td class="performance-variable">🟡 Variable</td>
+</tr>
+<tr>
+<td class="">4</td>
+<td class="">heapq_std</td>
+<td class="">0.000027</td>
+<td class="">0.000002</td>
+<td class="">0.0562</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">5</td>
+<td class="">functools_std</td>
+<td class="">0.000033</td>
+<td class="">0.000009</td>
+<td class="">0.2639</td>
+<td class="">4</td>
+<td class="performance-variable">🟡 Variable</td>
+</tr>
+<tr>
+<td class="">6</td>
+<td class="">networkx</td>
+<td class="">0.000082</td>
+<td class="">0.000027</td>
+<td class="">0.3305</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">7</td>
+<td class="">statsmodels</td>
+<td class="">0.000138</td>
+<td class="">0.000012</td>
+<td class="">0.0849</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">8</td>
+<td class="">sympy</td>
+<td class="">0.000147</td>
+<td class="">0.009965</td>
+<td class="">67.6333</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">9</td>
+<td class="">toml</td>
+<td class="">0.000169</td>
+<td class="">0.000011</td>
+<td class="">0.0646</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">10</td>
+<td class="">msgpack</td>
+<td class="">0.000268</td>
+<td class="">0.000423</td>
+<td class="">1.5774</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">11</td>
+<td class="">pickle_std</td>
+<td class="">0.000286</td>
+<td class="">0.000213</td>
+<td class="">0.7437</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">12</td>
+<td class="">orjson</td>
+<td class="">0.000375</td>
+<td class="">0.000367</td>
+<td class="">0.9799</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">13</td>
+<td class="">scipy</td>
+<td class="">0.000635</td>
+<td class="">0.000109</td>
+<td class="">0.1716</td>
+<td class="">4</td>
+<td class="performance-variable">🟡 Variable</td>
+</tr>
+<tr>
+<td class="">14</td>
+<td class="">ujson</td>
+<td class="">0.001357</td>
+<td class="">0.000273</td>
+<td class="">0.2010</td>
+<td class="">4</td>
+<td class="performance-variable">🟡 Variable</td>
+</tr>
+<tr>
+<td class="">15</td>
+<td class="">optuna</td>
+<td class="">0.001534</td>
+<td class="">0.000266</td>
+<td class="">0.1736</td>
+<td class="">4</td>
+<td class="performance-variable">🟡 Variable</td>
+</tr>
+<tr>
+<td class="">16</td>
+<td class="">json_std</td>
+<td class="">0.001677</td>
+<td class="">0.000261</td>
+<td class="">0.1557</td>
+<td class="">4</td>
+<td class="performance-variable">🟡 Variable</td>
+</tr>
+<tr>
+<td class="">17</td>
+<td class="">yaml</td>
+<td class="">0.001790</td>
+<td class="">0.000093</td>
+<td class="">0.0517</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">18</td>
+<td class="">csv_std</td>
+<td class="">0.002084</td>
+<td class="">0.000272</td>
+<td class="">0.1308</td>
+<td class="">4</td>
+<td class="performance-variable">🟡 Variable</td>
+</tr>
+<tr>
+<td class="">19</td>
+<td class="">duckdb</td>
+<td class="">0.003573</td>
+<td class="">0.000566</td>
+<td class="">0.1585</td>
+<td class="">4</td>
+<td class="performance-variable">🟡 Variable</td>
+</tr>
+<tr>
+<td class="">20</td>
+<td class="">xarray</td>
+<td class="">0.004388</td>
+<td class="">0.004907</td>
+<td class="">1.1183</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">21</td>
+<td class="">tensorflow</td>
+<td class="">0.015558</td>
+<td class="">0.028734</td>
+<td class="">1.8468</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">22</td>
+<td class="">collections_std</td>
+<td class="">0.019665</td>
+<td class="">0.062742</td>
+<td class="">3.1906</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">23</td>
+<td class="">pymongo</td>
+<td class="">0.029693</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">24</td>
+<td class="">numba</td>
+<td class="">0.040215</td>
+<td class="">0.111503</td>
+<td class="">2.7727</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">25</td>
+<td class="">torch</td>
+<td class="">0.053079</td>
+<td class="">0.167710</td>
+<td class="">3.1596</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">26</td>
+<td class="">numpy</td>
+<td class="">0.053517</td>
+<td class="">0.163189</td>
+<td class="">3.0493</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">27</td>
+<td class="">psycopg2</td>
+<td class="">0.056535</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">28</td>
+<td class="">clickhouse</td>
+<td class="">0.064866</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">29</td>
+<td class="">dask</td>
+<td class="">0.066715</td>
+<td class="">0.202366</td>
+<td class="">3.0333</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">30</td>
+<td class="">pyarrow</td>
+<td class="">0.067482</td>
+<td class="">0.211506</td>
+<td class="">3.1343</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">31</td>
+<td class="">h5py</td>
+<td class="">0.068732</td>
+<td class="">0.206064</td>
+<td class="">2.9981</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">32</td>
+<td class="">redis</td>
+<td class="">0.071468</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">33</td>
+<td class="">cython</td>
+<td class="">0.083973</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">34</td>
+<td class="">protobuf</td>
+<td class="">0.086992</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">35</td>
+<td class="">avro</td>
+<td class="">0.090138</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">36</td>
+<td class="">operator_std</td>
+<td class="">0.157664</td>
+<td class="">0.682653</td>
+<td class="">4.3298</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">37</td>
+<td class="">pandas</td>
+<td class="">0.382755</td>
+<td class="">1.157624</td>
+<td class="">3.0245</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">38</td>
+<td class="">sqlite3_std</td>
+<td class="">0.715632</td>
+<td class="">2.336004</td>
+<td class="">3.2643</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">39</td>
+<td class="">itertools_std</td>
+<td class="">0.979483</td>
+<td class="">5.501304</td>
+<td class="">5.6165</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">40</td>
+<td class="">sqlalchemy</td>
+<td class="">2.382881</td>
+<td class="">8.577967</td>
+<td class="">3.5998</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">41</td>
+<td class="">jax</td>
+<td class="">2.432428</td>
+<td class="">6.640982</td>
+<td class="">2.7302</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">42</td>
+<td class="">modin</td>
+<td class="">13.240602</td>
+<td class="">31.265886</td>
+<td class="">2.3614</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+</tbody>
+</table>
+<h2>🏆 Performance Rankings - FILTER Operation</h2>
+<table id="rankings-filter">
+<thead>
+<tr>
+<th>Rank</th>
+<th>Library</th>
+<th>Geometric Mean (s)</th>
+<th>Std Dev</th>
+<th>Coefficient of Variation</th>
+<th>Measurements</th>
+<th>Performance Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="">1</td>
+<td class="">heapq_std</td>
+<td class="">0.000037</td>
+<td class="">0.000008</td>
+<td class="">0.2083</td>
+<td class="">4</td>
+<td class="performance-variable">🟡 Variable</td>
+</tr>
+<tr>
+<td class="">2</td>
+<td class="">itertools_std</td>
+<td class="">0.000040</td>
+<td class="">0.000009</td>
+<td class="">0.2170</td>
+<td class="">4</td>
+<td class="performance-variable">🟡 Variable</td>
+</tr>
+<tr>
+<td class="">3</td>
+<td class="">msgpack</td>
+<td class="">0.000063</td>
+<td class="">0.000014</td>
+<td class="">0.2304</td>
+<td class="">4</td>
+<td class="performance-variable">🟡 Variable</td>
+</tr>
+<tr>
+<td class="">4</td>
+<td class="">networkx</td>
+<td class="">0.000097</td>
+<td class="">0.000127</td>
+<td class="">1.3103</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">5</td>
+<td class="">scipy</td>
+<td class="">0.000105</td>
+<td class="">0.000012</td>
+<td class="">0.1175</td>
+<td class="">4</td>
+<td class="performance-variable">🟡 Variable</td>
+</tr>
+<tr>
+<td class="">6</td>
+<td class="">pickle_std</td>
+<td class="">0.000166</td>
+<td class="">0.000009</td>
+<td class="">0.0548</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">7</td>
+<td class="">sympy</td>
+<td class="">0.000284</td>
+<td class="">0.003292</td>
+<td class="">11.6046</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">8</td>
+<td class="">orjson</td>
+<td class="">0.000434</td>
+<td class="">0.000067</td>
+<td class="">0.1549</td>
+<td class="">4</td>
+<td class="performance-variable">🟡 Variable</td>
+</tr>
+<tr>
+<td class="">9</td>
+<td class="">statsmodels</td>
+<td class="">0.000456</td>
+<td class="">0.000389</td>
+<td class="">0.8528</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">10</td>
+<td class="">toml</td>
+<td class="">0.000495</td>
+<td class="">0.000015</td>
+<td class="">0.0309</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">11</td>
+<td class="">ujson</td>
+<td class="">0.000874</td>
+<td class="">0.000205</td>
+<td class="">0.2348</td>
+<td class="">4</td>
+<td class="performance-variable">🟡 Variable</td>
+</tr>
+<tr>
+<td class="">12</td>
+<td class="">json_std</td>
+<td class="">0.000903</td>
+<td class="">0.000031</td>
+<td class="">0.0341</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">13</td>
+<td class="">protobuf</td>
+<td class="">0.001006</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">14</td>
+<td class="">csv_std</td>
+<td class="">0.001253</td>
+<td class="">0.000121</td>
+<td class="">0.0963</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">15</td>
+<td class="">avro</td>
+<td class="">0.003334</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">16</td>
+<td class="">yaml</td>
+<td class="">0.004198</td>
+<td class="">0.001297</td>
+<td class="">0.3089</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">17</td>
+<td class="">pymongo</td>
+<td class="">0.004306</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">18</td>
+<td class="">sklearn</td>
+<td class="">0.004610</td>
+<td class="">0.000477</td>
+<td class="">0.1034</td>
+<td class="">4</td>
+<td class="performance-variable">🟡 Variable</td>
+</tr>
+<tr>
+<td class="">19</td>
+<td class="">lightgbm</td>
+<td class="">0.007464</td>
+<td class="">0.024530</td>
+<td class="">3.2864</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">20</td>
+<td class="">collections_std</td>
+<td class="">0.010311</td>
+<td class="">0.033587</td>
+<td class="">3.2573</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">21</td>
+<td class="">redis</td>
+<td class="">0.011865</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">22</td>
+<td class="">clickhouse</td>
+<td class="">0.012082</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">23</td>
+<td class="">cython</td>
+<td class="">0.012197</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">24</td>
+<td class="">torch</td>
+<td class="">0.014781</td>
+<td class="">0.048170</td>
+<td class="">3.2590</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">25</td>
+<td class="">pyarrow</td>
+<td class="">0.016104</td>
+<td class="">0.057768</td>
+<td class="">3.5872</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">26</td>
+<td class="">tensorflow</td>
+<td class="">0.016794</td>
+<td class="">0.026268</td>
+<td class="">1.5642</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">27</td>
+<td class="">numpy</td>
+<td class="">0.018787</td>
+<td class="">0.059056</td>
+<td class="">3.1434</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">28</td>
+<td class="">pandas</td>
+<td class="">0.022680</td>
+<td class="">0.055598</td>
+<td class="">2.4514</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">29</td>
+<td class="">psycopg2</td>
+<td class="">0.038319</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">30</td>
+<td class="">duckdb</td>
+<td class="">0.090266</td>
+<td class="">0.291818</td>
+<td class="">3.2329</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">31</td>
+<td class="">dask</td>
+<td class="">0.114647</td>
+<td class="">0.294022</td>
+<td class="">2.5646</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">32</td>
+<td class="">modin</td>
+<td class="">0.126354</td>
+<td class="">0.112741</td>
+<td class="">0.8923</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">33</td>
+<td class="">jax</td>
+<td class="">0.288050</td>
+<td class="">0.487924</td>
+<td class="">1.6939</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">34</td>
+<td class="">xarray</td>
+<td class="">0.353236</td>
+<td class="">1.083339</td>
+<td class="">3.0669</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">35</td>
+<td class="">sqlite3_std</td>
+<td class="">0.563453</td>
+<td class="">1.835295</td>
+<td class="">3.2572</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">36</td>
+<td class="">sqlalchemy</td>
+<td class="">1.170168</td>
+<td class="">4.197245</td>
+<td class="">3.5869</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+</tbody>
+</table>
+<h2>🏆 Performance Rankings - AGGREGATE Operation</h2>
+<table id="rankings-aggregate">
+<thead>
+<tr>
+<th>Rank</th>
+<th>Library</th>
+<th>Geometric Mean (s)</th>
+<th>Std Dev</th>
+<th>Coefficient of Variation</th>
+<th>Measurements</th>
+<th>Performance Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="">1</td>
+<td class="">networkx</td>
+<td class="">0.000060</td>
+<td class="">0.000078</td>
+<td class="">1.3026</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">2</td>
+<td class="">torch</td>
+<td class="">0.000226</td>
+<td class="">0.000230</td>
+<td class="">1.0168</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">3</td>
+<td class="">scipy</td>
+<td class="">0.000394</td>
+<td class="">0.000064</td>
+<td class="">0.1624</td>
+<td class="">4</td>
+<td class="performance-variable">🟡 Variable</td>
+</tr>
+<tr>
+<td class="">4</td>
+<td class="">tensorflow</td>
+<td class="">0.000510</td>
+<td class="">0.000233</td>
+<td class="">0.4565</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">5</td>
+<td class="">sympy</td>
+<td class="">0.000896</td>
+<td class="">0.005900</td>
+<td class="">6.5848</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">6</td>
+<td class="">psycopg2</td>
+<td class="">0.001236</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">7</td>
+<td class="">numpy</td>
+<td class="">0.001542</td>
+<td class="">0.002952</td>
+<td class="">1.9146</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">8</td>
+<td class="">xarray</td>
+<td class="">0.002718</td>
+<td class="">0.005660</td>
+<td class="">2.0824</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">9</td>
+<td class="">duckdb</td>
+<td class="">0.006773</td>
+<td class="">0.003642</td>
+<td class="">0.5377</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">10</td>
+<td class="">redis</td>
+<td class="">0.007635</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">11</td>
+<td class="">pyarrow</td>
+<td class="">0.007893</td>
+<td class="">0.017821</td>
+<td class="">2.2579</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">12</td>
+<td class="">cython</td>
+<td class="">0.008514</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">13</td>
+<td class="">modin</td>
+<td class="">0.013499</td>
+<td class="">0.002372</td>
+<td class="">0.1757</td>
+<td class="">4</td>
+<td class="performance-variable">🟡 Variable</td>
+</tr>
+<tr>
+<td class="">14</td>
+<td class="">avro</td>
+<td class="">0.017966</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">15</td>
+<td class="">pandas</td>
+<td class="">0.021846</td>
+<td class="">0.056875</td>
+<td class="">2.6034</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">16</td>
+<td class="">jax</td>
+<td class="">0.024044</td>
+<td class="">0.001783</td>
+<td class="">0.0742</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">17</td>
+<td class="">clickhouse</td>
+<td class="">0.024085</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">18</td>
+<td class="">protobuf</td>
+<td class="">0.028104</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">19</td>
+<td class="">collections_std</td>
+<td class="">0.028719</td>
+<td class="">0.087737</td>
+<td class="">3.0550</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">20</td>
+<td class="">pymongo</td>
+<td class="">0.038046</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">21</td>
+<td class="">dask</td>
+<td class="">0.093084</td>
+<td class="">0.211523</td>
+<td class="">2.2724</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">22</td>
+<td class="">sqlalchemy</td>
+<td class="">0.197538</td>
+<td class="">0.725688</td>
+<td class="">3.6737</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">23</td>
+<td class="">sqlite3_std</td>
+<td class="">0.259914</td>
+<td class="">0.851986</td>
+<td class="">3.2779</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+</tbody>
+</table>
+<h2>🏆 Performance Rankings - JOIN Operation</h2>
+<table id="rankings-join">
+<thead>
+<tr>
+<th>Rank</th>
+<th>Library</th>
+<th>Geometric Mean (s)</th>
+<th>Std Dev</th>
+<th>Coefficient of Variation</th>
+<th>Measurements</th>
+<th>Performance Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="">1</td>
+<td class="">numpy</td>
+<td class="">0.001608</td>
+<td class="">0.004373</td>
+<td class="">2.7196</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">2</td>
+<td class="">protobuf</td>
+<td class="">0.005607</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">3</td>
+<td class="">cython</td>
+<td class="">0.009914</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">4</td>
+<td class="">clickhouse</td>
+<td class="">0.014842</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">5</td>
+<td class="">psycopg2</td>
+<td class="">0.025018</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">6</td>
+<td class="">avro</td>
+<td class="">0.032998</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">7</td>
+<td class="">pymongo</td>
+<td class="">0.044417</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">8</td>
+<td class="">redis</td>
+<td class="">0.044501</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">9</td>
+<td class="">pandas</td>
+<td class="">0.075907</td>
+<td class="">0.286822</td>
+<td class="">3.7786</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">10</td>
+<td class="">duckdb</td>
+<td class="">0.124631</td>
+<td class="">0.352799</td>
+<td class="">2.8307</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+</tbody>
+</table>
+<h2>🏆 Performance Rankings - SORT Operation</h2>
+<table id="rankings-sort">
+<thead>
+<tr>
+<th>Rank</th>
+<th>Library</th>
+<th>Geometric Mean (s)</th>
+<th>Std Dev</th>
+<th>Coefficient of Variation</th>
+<th>Measurements</th>
+<th>Performance Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="">1</td>
+<td class="">pymongo</td>
+<td class="">0.001350</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">2</td>
+<td class="">cython</td>
+<td class="">0.010587</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">3</td>
+<td class="">protobuf</td>
+<td class="">0.013862</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">4</td>
+<td class="">psycopg2</td>
+<td class="">0.020090</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">5</td>
+<td class="">avro</td>
+<td class="">0.036177</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">6</td>
+<td class="">redis</td>
+<td class="">0.036597</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">7</td>
+<td class="">clickhouse</td>
+<td class="">0.038742</td>
+<td class="">0.000000</td>
+<td class="">0.0000</td>
+<td class="">4</td>
+<td class="performance-stable">🟢 Stable</td>
+</tr>
+<tr>
+<td class="">8</td>
+<td class="">numpy</td>
+<td class="">0.058947</td>
+<td class="">0.263295</td>
+<td class="">4.4667</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">9</td>
+<td class="">duckdb</td>
+<td class="">0.207206</td>
+<td class="">0.738700</td>
+<td class="">3.5651</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+<tr>
+<td class="">10</td>
+<td class="">pandas</td>
+<td class="">0.264763</td>
+<td class="">1.314977</td>
+<td class="">4.9666</td>
+<td class="">4</td>
+<td class="performance-unstable">🔴 Unstable</td>
+</tr>
+</tbody>
+</table>
+<h2>📈 Category Summary</h2>
+<table id="category-summary">
+<thead>
+<tr>
+<th>Category</th>
+<th>Total Platforms</th>
+<th>Available</th>
+<th>Coverage (%)</th>
+<th>Best Performer</th>
+<th>Best Time (s)</th>
+<th>Platforms</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="">Array Computing</td>
+<td class="">8</td>
+<td class="">7</td>
+<td class="">87.5%</td>
+<td class="">scipy</td>
+<td class="">0.000094</td>
+<td class="">numpy, pyarrow, torch, tensorflow, jax...</td>
+</tr>
+<tr>
+<td class="">DataFrame</td>
+<td class="">8</td>
+<td class="">5</td>
+<td class="">62.5%</td>
+<td class="">pandas</td>
+<td class="">0.004583</td>
+<td class="">pandas, polars, dask, modin, vaex...</td>
+</tr>
+<tr>
+<td class="">Machine Learning</td>
+<td class="">6</td>
+<td class="">6</td>
+<td class="">100.0%</td>
+<td class="">sklearn</td>
+<td class="">0.000010</td>
+<td class="">sklearn, xgboost, lightgbm, catboost, statsmodels...</td>
+</tr>
+<tr>
+<td class="">SQL Engine</td>
+<td class="">6</td>
+<td class="">6</td>
+<td class="">100.0%</td>
+<td class="">psycopg2</td>
+<td class="">0.001236</td>
+<td class="">duckdb, sqlalchemy, clickhouse, psycopg2, pymongo...</td>
+</tr>
+<tr>
+<td class="">Serialization</td>
+<td class="">8</td>
+<td class="">8</td>
+<td class="">100.0%</td>
+<td class="">msgpack</td>
+<td class="">0.000053</td>
+<td class="">ujson, orjson, msgpack, avro, protobuf...</td>
+</tr>
+<tr>
+<td class="">Specialized</td>
+<td class="">4</td>
+<td class="">4</td>
+<td class="">100.0%</td>
+<td class="">sympy</td>
+<td class="">0.000024</td>
+<td class="">networkx, sympy, numba, cython</td>
+</tr>
+<tr>
+<td class="">Standard Library</td>
+<td class="">10</td>
+<td class="">10</td>
+<td class="">100.0%</td>
+<td class="">bisect_std</td>
+<td class="">0.000023</td>
+<td class="">json_std, csv_std, pickle_std, sqlite3_std, collections_std...</td>
+</tr>
+</tbody>
+</table>
+<h2>📊 Statistical Analysis Summary</h2>
+<table id="statistical-summary">
+<thead>
+<tr>
+<th>Operation</th>
+<th>Libraries Tested</th>
+<th>Total Measurements</th>
+<th>Pairwise Comparisons</th>
+<th>Significant Differences</th>
+<th>Significance Rate (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="">Create</td>
+<td class="">42</td>
+<td class="">168</td>
+<td class="">861</td>
+<td class="">861</td>
+<td class="">100.0%</td>
+</tr>
+<tr>
+<td class="">Filter</td>
+<td class="">36</td>
+<td class="">144</td>
+<td class="">630</td>
+<td class="">630</td>
+<td class="">100.0%</td>
+</tr>
+<tr>
+<td class="">Aggregate</td>
+<td class="">23</td>
+<td class="">92</td>
+<td class="">253</td>
+<td class="">253</td>
+<td class="">100.0%</td>
+</tr>
+<tr>
+<td class="">Join</td>
+<td class="">10</td>
+<td class="">40</td>
+<td class="">45</td>
+<td class="">45</td>
+<td class="">100.0%</td>
+</tr>
+<tr>
+<td class="">Sort</td>
+<td class="">10</td>
+<td class="">40</td>
+<td class="">45</td>
+<td class="">45</td>
+<td class="">100.0%</td>
+</tr>
+</tbody>
+</table>
+<h2>💻 System Information</h2>
+<table id="system-info">
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="">Framework Version</td>
+<td class="">PyBench v1.0</td>
+</tr>
+<tr>
+<td class="">Report Date</td>
+<td class="">2025-08-09T13:23:19.533803</td>
+</tr>
+<tr>
+<td class="">Python Version</td>
+<td class="">3.11.0</td>
+</tr>
+<tr>
+<td class="">Platform</td>
+<td class="">darwin</td>
+</tr>
+<tr>
+<td class="">CPU Cores (Logical)</td>
+<td class="">14</td>
+</tr>
+<tr>
+<td class="">CPU Cores (Physical)</td>
+<td class="">14</td>
+</tr>
+<tr>
+<td class="">Memory (GB)</td>
+<td class="">36.0</td>
+</tr>
+<tr>
+<td class="">Random Seed</td>
+<td class="">42</td>
+</tr>
+<tr>
+<td class="">Trials per Measurement</td>
+<td class="">3</td>
+</tr>
+<tr>
+<td class="">Confidence Level</td>
+<td class="">95%</td>
+</tr>
+<tr>
+<td class="">Total Experiments</td>
+<td class="">484</td>
+</tr>
+<tr>
+<td class="">Total Platforms</td>
+<td class="">50</td>
+</tr>
+<tr>
+<td class="">Available Platforms</td>
+<td class="">46</td>
+</tr>
+</tbody>
+</table>
+<h2>📋 Detailed Performance Metrics (Top 100)</h2>
+<table id="detailed-metrics">
+<thead>
+<tr>
+<th>Library</th>
+<th>Operation</th>
+<th>Data Size</th>
+<th>Mean Time (s)</th>
+<th>Median Time (s)</th>
+<th>Std Dev (s)</th>
+<th>Min Time (s)</th>
+<th>Max Time (s)</th>
+<th>Memory Peak (MB)</th>
+<th>Memory Mean (MB)</th>
+<th>CPU Utilization (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="">avro</td>
+<td class="">aggregate</td>
+<td class="">100,000</td>
+<td class="">0.017966</td>
+<td class="">0.017966</td>
+<td class="">0.000000</td>
+<td class="">0.017966</td>
+<td class="">0.017966</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">avro</td>
+<td class="">aggregate</td>
+<td class="">500,000</td>
+<td class="">0.017966</td>
+<td class="">0.017966</td>
+<td class="">0.000000</td>
+<td class="">0.017966</td>
+<td class="">0.017966</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">avro</td>
+<td class="">aggregate</td>
+<td class="">1,000,000</td>
+<td class="">0.017966</td>
+<td class="">0.017966</td>
+<td class="">0.000000</td>
+<td class="">0.017966</td>
+<td class="">0.017966</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">avro</td>
+<td class="">aggregate</td>
+<td class="">5,000,000</td>
+<td class="">0.017966</td>
+<td class="">0.017966</td>
+<td class="">0.000000</td>
+<td class="">0.017966</td>
+<td class="">0.017966</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">avro</td>
+<td class="">create</td>
+<td class="">100,000</td>
+<td class="">0.090138</td>
+<td class="">0.090138</td>
+<td class="">0.000000</td>
+<td class="">0.090138</td>
+<td class="">0.090138</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">avro</td>
+<td class="">create</td>
+<td class="">500,000</td>
+<td class="">0.090138</td>
+<td class="">0.090138</td>
+<td class="">0.000000</td>
+<td class="">0.090138</td>
+<td class="">0.090138</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">avro</td>
+<td class="">create</td>
+<td class="">1,000,000</td>
+<td class="">0.090138</td>
+<td class="">0.090138</td>
+<td class="">0.000000</td>
+<td class="">0.090138</td>
+<td class="">0.090138</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">avro</td>
+<td class="">create</td>
+<td class="">5,000,000</td>
+<td class="">0.090138</td>
+<td class="">0.090138</td>
+<td class="">0.000000</td>
+<td class="">0.090138</td>
+<td class="">0.090138</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">avro</td>
+<td class="">filter</td>
+<td class="">100,000</td>
+<td class="">0.003334</td>
+<td class="">0.003334</td>
+<td class="">0.000000</td>
+<td class="">0.003334</td>
+<td class="">0.003334</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">avro</td>
+<td class="">filter</td>
+<td class="">500,000</td>
+<td class="">0.003334</td>
+<td class="">0.003334</td>
+<td class="">0.000000</td>
+<td class="">0.003334</td>
+<td class="">0.003334</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">avro</td>
+<td class="">filter</td>
+<td class="">1,000,000</td>
+<td class="">0.003334</td>
+<td class="">0.003334</td>
+<td class="">0.000000</td>
+<td class="">0.003334</td>
+<td class="">0.003334</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">avro</td>
+<td class="">filter</td>
+<td class="">5,000,000</td>
+<td class="">0.003334</td>
+<td class="">0.003334</td>
+<td class="">0.000000</td>
+<td class="">0.003334</td>
+<td class="">0.003334</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">avro</td>
+<td class="">join</td>
+<td class="">100,000</td>
+<td class="">0.032998</td>
+<td class="">0.032998</td>
+<td class="">0.000000</td>
+<td class="">0.032998</td>
+<td class="">0.032998</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">avro</td>
+<td class="">join</td>
+<td class="">500,000</td>
+<td class="">0.032998</td>
+<td class="">0.032998</td>
+<td class="">0.000000</td>
+<td class="">0.032998</td>
+<td class="">0.032998</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">avro</td>
+<td class="">join</td>
+<td class="">1,000,000</td>
+<td class="">0.032998</td>
+<td class="">0.032998</td>
+<td class="">0.000000</td>
+<td class="">0.032998</td>
+<td class="">0.032998</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">avro</td>
+<td class="">join</td>
+<td class="">5,000,000</td>
+<td class="">0.032998</td>
+<td class="">0.032998</td>
+<td class="">0.000000</td>
+<td class="">0.032998</td>
+<td class="">0.032998</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">avro</td>
+<td class="">sort</td>
+<td class="">100,000</td>
+<td class="">0.036177</td>
+<td class="">0.036177</td>
+<td class="">0.000000</td>
+<td class="">0.036177</td>
+<td class="">0.036177</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">avro</td>
+<td class="">sort</td>
+<td class="">500,000</td>
+<td class="">0.036177</td>
+<td class="">0.036177</td>
+<td class="">0.000000</td>
+<td class="">0.036177</td>
+<td class="">0.036177</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">avro</td>
+<td class="">sort</td>
+<td class="">1,000,000</td>
+<td class="">0.036177</td>
+<td class="">0.036177</td>
+<td class="">0.000000</td>
+<td class="">0.036177</td>
+<td class="">0.036177</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">avro</td>
+<td class="">sort</td>
+<td class="">5,000,000</td>
+<td class="">0.036177</td>
+<td class="">0.036177</td>
+<td class="">0.000000</td>
+<td class="">0.036177</td>
+<td class="">0.036177</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">bisect_std</td>
+<td class="">create</td>
+<td class="">100,000</td>
+<td class="">0.000034</td>
+<td class="">0.000034</td>
+<td class="">0.000000</td>
+<td class="">0.000034</td>
+<td class="">0.000034</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">bisect_std</td>
+<td class="">create</td>
+<td class="">500,000</td>
+<td class="">0.000023</td>
+<td class="">0.000023</td>
+<td class="">0.000000</td>
+<td class="">0.000023</td>
+<td class="">0.000023</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">bisect_std</td>
+<td class="">create</td>
+<td class="">1,000,000</td>
+<td class="">0.000023</td>
+<td class="">0.000023</td>
+<td class="">0.000000</td>
+<td class="">0.000023</td>
+<td class="">0.000023</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">bisect_std</td>
+<td class="">create</td>
+<td class="">5,000,000</td>
+<td class="">0.000025</td>
+<td class="">0.000025</td>
+<td class="">0.000000</td>
+<td class="">0.000025</td>
+<td class="">0.000025</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">clickhouse</td>
+<td class="">aggregate</td>
+<td class="">100,000</td>
+<td class="">0.024085</td>
+<td class="">0.024085</td>
+<td class="">0.000000</td>
+<td class="">0.024085</td>
+<td class="">0.024085</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">clickhouse</td>
+<td class="">aggregate</td>
+<td class="">500,000</td>
+<td class="">0.024085</td>
+<td class="">0.024085</td>
+<td class="">0.000000</td>
+<td class="">0.024085</td>
+<td class="">0.024085</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">clickhouse</td>
+<td class="">aggregate</td>
+<td class="">1,000,000</td>
+<td class="">0.024085</td>
+<td class="">0.024085</td>
+<td class="">0.000000</td>
+<td class="">0.024085</td>
+<td class="">0.024085</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">clickhouse</td>
+<td class="">aggregate</td>
+<td class="">5,000,000</td>
+<td class="">0.024085</td>
+<td class="">0.024085</td>
+<td class="">0.000000</td>
+<td class="">0.024085</td>
+<td class="">0.024085</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">clickhouse</td>
+<td class="">create</td>
+<td class="">100,000</td>
+<td class="">0.064866</td>
+<td class="">0.064866</td>
+<td class="">0.000000</td>
+<td class="">0.064866</td>
+<td class="">0.064866</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">clickhouse</td>
+<td class="">create</td>
+<td class="">500,000</td>
+<td class="">0.064866</td>
+<td class="">0.064866</td>
+<td class="">0.000000</td>
+<td class="">0.064866</td>
+<td class="">0.064866</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">clickhouse</td>
+<td class="">create</td>
+<td class="">1,000,000</td>
+<td class="">0.064866</td>
+<td class="">0.064866</td>
+<td class="">0.000000</td>
+<td class="">0.064866</td>
+<td class="">0.064866</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">clickhouse</td>
+<td class="">create</td>
+<td class="">5,000,000</td>
+<td class="">0.064866</td>
+<td class="">0.064866</td>
+<td class="">0.000000</td>
+<td class="">0.064866</td>
+<td class="">0.064866</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">clickhouse</td>
+<td class="">filter</td>
+<td class="">100,000</td>
+<td class="">0.012082</td>
+<td class="">0.012082</td>
+<td class="">0.000000</td>
+<td class="">0.012082</td>
+<td class="">0.012082</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">clickhouse</td>
+<td class="">filter</td>
+<td class="">500,000</td>
+<td class="">0.012082</td>
+<td class="">0.012082</td>
+<td class="">0.000000</td>
+<td class="">0.012082</td>
+<td class="">0.012082</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">clickhouse</td>
+<td class="">filter</td>
+<td class="">1,000,000</td>
+<td class="">0.012082</td>
+<td class="">0.012082</td>
+<td class="">0.000000</td>
+<td class="">0.012082</td>
+<td class="">0.012082</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">clickhouse</td>
+<td class="">filter</td>
+<td class="">5,000,000</td>
+<td class="">0.012082</td>
+<td class="">0.012082</td>
+<td class="">0.000000</td>
+<td class="">0.012082</td>
+<td class="">0.012082</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">clickhouse</td>
+<td class="">join</td>
+<td class="">100,000</td>
+<td class="">0.014842</td>
+<td class="">0.014842</td>
+<td class="">0.000000</td>
+<td class="">0.014842</td>
+<td class="">0.014842</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">clickhouse</td>
+<td class="">join</td>
+<td class="">500,000</td>
+<td class="">0.014842</td>
+<td class="">0.014842</td>
+<td class="">0.000000</td>
+<td class="">0.014842</td>
+<td class="">0.014842</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">clickhouse</td>
+<td class="">join</td>
+<td class="">1,000,000</td>
+<td class="">0.014842</td>
+<td class="">0.014842</td>
+<td class="">0.000000</td>
+<td class="">0.014842</td>
+<td class="">0.014842</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">clickhouse</td>
+<td class="">join</td>
+<td class="">5,000,000</td>
+<td class="">0.014842</td>
+<td class="">0.014842</td>
+<td class="">0.000000</td>
+<td class="">0.014842</td>
+<td class="">0.014842</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">clickhouse</td>
+<td class="">sort</td>
+<td class="">100,000</td>
+<td class="">0.038742</td>
+<td class="">0.038742</td>
+<td class="">0.000000</td>
+<td class="">0.038742</td>
+<td class="">0.038742</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">clickhouse</td>
+<td class="">sort</td>
+<td class="">500,000</td>
+<td class="">0.038742</td>
+<td class="">0.038742</td>
+<td class="">0.000000</td>
+<td class="">0.038742</td>
+<td class="">0.038742</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">clickhouse</td>
+<td class="">sort</td>
+<td class="">1,000,000</td>
+<td class="">0.038742</td>
+<td class="">0.038742</td>
+<td class="">0.000000</td>
+<td class="">0.038742</td>
+<td class="">0.038742</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">clickhouse</td>
+<td class="">sort</td>
+<td class="">5,000,000</td>
+<td class="">0.038742</td>
+<td class="">0.038742</td>
+<td class="">0.000000</td>
+<td class="">0.038742</td>
+<td class="">0.038742</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">collections_std</td>
+<td class="">aggregate</td>
+<td class="">100,000</td>
+<td class="">0.004598</td>
+<td class="">0.004598</td>
+<td class="">0.000000</td>
+<td class="">0.004598</td>
+<td class="">0.004598</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">collections_std</td>
+<td class="">aggregate</td>
+<td class="">500,000</td>
+<td class="">0.019446</td>
+<td class="">0.019446</td>
+<td class="">0.000000</td>
+<td class="">0.019446</td>
+<td class="">0.019446</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">collections_std</td>
+<td class="">aggregate</td>
+<td class="">1,000,000</td>
+<td class="">0.039168</td>
+<td class="">0.039168</td>
+<td class="">0.000000</td>
+<td class="">0.039168</td>
+<td class="">0.039168</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">collections_std</td>
+<td class="">aggregate</td>
+<td class="">5,000,000</td>
+<td class="">0.194245</td>
+<td class="">0.194245</td>
+<td class="">0.000000</td>
+<td class="">0.194245</td>
+<td class="">0.194245</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">collections_std</td>
+<td class="">create</td>
+<td class="">100,000</td>
+<td class="">0.002933</td>
+<td class="">0.002933</td>
+<td class="">0.000000</td>
+<td class="">0.002933</td>
+<td class="">0.002933</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">collections_std</td>
+<td class="">create</td>
+<td class="">500,000</td>
+<td class="">0.013276</td>
+<td class="">0.013276</td>
+<td class="">0.000000</td>
+<td class="">0.013276</td>
+<td class="">0.013276</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">collections_std</td>
+<td class="">create</td>
+<td class="">1,000,000</td>
+<td class="">0.027732</td>
+<td class="">0.027732</td>
+<td class="">0.000000</td>
+<td class="">0.027732</td>
+<td class="">0.027732</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">collections_std</td>
+<td class="">create</td>
+<td class="">5,000,000</td>
+<td class="">0.138472</td>
+<td class="">0.138472</td>
+<td class="">0.000000</td>
+<td class="">0.138472</td>
+<td class="">0.138472</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">collections_std</td>
+<td class="">filter</td>
+<td class="">100,000</td>
+<td class="">0.001355</td>
+<td class="">0.001355</td>
+<td class="">0.000000</td>
+<td class="">0.001355</td>
+<td class="">0.001355</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">collections_std</td>
+<td class="">filter</td>
+<td class="">500,000</td>
+<td class="">0.006843</td>
+<td class="">0.006843</td>
+<td class="">0.000000</td>
+<td class="">0.006843</td>
+<td class="">0.006843</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">collections_std</td>
+<td class="">filter</td>
+<td class="">1,000,000</td>
+<td class="">0.016423</td>
+<td class="">0.016423</td>
+<td class="">0.000000</td>
+<td class="">0.016423</td>
+<td class="">0.016423</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">collections_std</td>
+<td class="">filter</td>
+<td class="">5,000,000</td>
+<td class="">0.074217</td>
+<td class="">0.074217</td>
+<td class="">0.000000</td>
+<td class="">0.074217</td>
+<td class="">0.074217</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">csv_std</td>
+<td class="">create</td>
+<td class="">100,000</td>
+<td class="">0.001838</td>
+<td class="">0.001838</td>
+<td class="">0.000000</td>
+<td class="">0.001838</td>
+<td class="">0.001838</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">csv_std</td>
+<td class="">create</td>
+<td class="">500,000</td>
+<td class="">0.002383</td>
+<td class="">0.002383</td>
+<td class="">0.000000</td>
+<td class="">0.002383</td>
+<td class="">0.002383</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">csv_std</td>
+<td class="">create</td>
+<td class="">1,000,000</td>
+<td class="">0.002275</td>
+<td class="">0.002275</td>
+<td class="">0.000000</td>
+<td class="">0.002275</td>
+<td class="">0.002275</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">csv_std</td>
+<td class="">create</td>
+<td class="">5,000,000</td>
+<td class="">0.001892</td>
+<td class="">0.001892</td>
+<td class="">0.000000</td>
+<td class="">0.001892</td>
+<td class="">0.001892</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">csv_std</td>
+<td class="">filter</td>
+<td class="">100,000</td>
+<td class="">0.001230</td>
+<td class="">0.001230</td>
+<td class="">0.000000</td>
+<td class="">0.001230</td>
+<td class="">0.001230</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">csv_std</td>
+<td class="">filter</td>
+<td class="">500,000</td>
+<td class="">0.001099</td>
+<td class="">0.001099</td>
+<td class="">0.000000</td>
+<td class="">0.001099</td>
+<td class="">0.001099</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">csv_std</td>
+<td class="">filter</td>
+<td class="">1,000,000</td>
+<td class="">0.001370</td>
+<td class="">0.001370</td>
+<td class="">0.000000</td>
+<td class="">0.001370</td>
+<td class="">0.001370</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">csv_std</td>
+<td class="">filter</td>
+<td class="">5,000,000</td>
+<td class="">0.001329</td>
+<td class="">0.001329</td>
+<td class="">0.000000</td>
+<td class="">0.001329</td>
+<td class="">0.001329</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">cython</td>
+<td class="">aggregate</td>
+<td class="">100,000</td>
+<td class="">0.008514</td>
+<td class="">0.008514</td>
+<td class="">0.000000</td>
+<td class="">0.008514</td>
+<td class="">0.008514</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">cython</td>
+<td class="">aggregate</td>
+<td class="">500,000</td>
+<td class="">0.008514</td>
+<td class="">0.008514</td>
+<td class="">0.000000</td>
+<td class="">0.008514</td>
+<td class="">0.008514</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">cython</td>
+<td class="">aggregate</td>
+<td class="">1,000,000</td>
+<td class="">0.008514</td>
+<td class="">0.008514</td>
+<td class="">0.000000</td>
+<td class="">0.008514</td>
+<td class="">0.008514</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">cython</td>
+<td class="">aggregate</td>
+<td class="">5,000,000</td>
+<td class="">0.008514</td>
+<td class="">0.008514</td>
+<td class="">0.000000</td>
+<td class="">0.008514</td>
+<td class="">0.008514</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">cython</td>
+<td class="">create</td>
+<td class="">100,000</td>
+<td class="">0.083973</td>
+<td class="">0.083973</td>
+<td class="">0.000000</td>
+<td class="">0.083973</td>
+<td class="">0.083973</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">cython</td>
+<td class="">create</td>
+<td class="">500,000</td>
+<td class="">0.083973</td>
+<td class="">0.083973</td>
+<td class="">0.000000</td>
+<td class="">0.083973</td>
+<td class="">0.083973</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">cython</td>
+<td class="">create</td>
+<td class="">1,000,000</td>
+<td class="">0.083973</td>
+<td class="">0.083973</td>
+<td class="">0.000000</td>
+<td class="">0.083973</td>
+<td class="">0.083973</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">cython</td>
+<td class="">create</td>
+<td class="">5,000,000</td>
+<td class="">0.083973</td>
+<td class="">0.083973</td>
+<td class="">0.000000</td>
+<td class="">0.083973</td>
+<td class="">0.083973</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">cython</td>
+<td class="">filter</td>
+<td class="">100,000</td>
+<td class="">0.012197</td>
+<td class="">0.012197</td>
+<td class="">0.000000</td>
+<td class="">0.012197</td>
+<td class="">0.012197</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">cython</td>
+<td class="">filter</td>
+<td class="">500,000</td>
+<td class="">0.012197</td>
+<td class="">0.012197</td>
+<td class="">0.000000</td>
+<td class="">0.012197</td>
+<td class="">0.012197</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">cython</td>
+<td class="">filter</td>
+<td class="">1,000,000</td>
+<td class="">0.012197</td>
+<td class="">0.012197</td>
+<td class="">0.000000</td>
+<td class="">0.012197</td>
+<td class="">0.012197</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">cython</td>
+<td class="">filter</td>
+<td class="">5,000,000</td>
+<td class="">0.012197</td>
+<td class="">0.012197</td>
+<td class="">0.000000</td>
+<td class="">0.012197</td>
+<td class="">0.012197</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">cython</td>
+<td class="">join</td>
+<td class="">100,000</td>
+<td class="">0.009914</td>
+<td class="">0.009914</td>
+<td class="">0.000000</td>
+<td class="">0.009914</td>
+<td class="">0.009914</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">cython</td>
+<td class="">join</td>
+<td class="">500,000</td>
+<td class="">0.009914</td>
+<td class="">0.009914</td>
+<td class="">0.000000</td>
+<td class="">0.009914</td>
+<td class="">0.009914</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">cython</td>
+<td class="">join</td>
+<td class="">1,000,000</td>
+<td class="">0.009914</td>
+<td class="">0.009914</td>
+<td class="">0.000000</td>
+<td class="">0.009914</td>
+<td class="">0.009914</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">cython</td>
+<td class="">join</td>
+<td class="">5,000,000</td>
+<td class="">0.009914</td>
+<td class="">0.009914</td>
+<td class="">0.000000</td>
+<td class="">0.009914</td>
+<td class="">0.009914</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">cython</td>
+<td class="">sort</td>
+<td class="">100,000</td>
+<td class="">0.010587</td>
+<td class="">0.010587</td>
+<td class="">0.000000</td>
+<td class="">0.010587</td>
+<td class="">0.010587</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">cython</td>
+<td class="">sort</td>
+<td class="">500,000</td>
+<td class="">0.010587</td>
+<td class="">0.010587</td>
+<td class="">0.000000</td>
+<td class="">0.010587</td>
+<td class="">0.010587</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">cython</td>
+<td class="">sort</td>
+<td class="">1,000,000</td>
+<td class="">0.010587</td>
+<td class="">0.010587</td>
+<td class="">0.000000</td>
+<td class="">0.010587</td>
+<td class="">0.010587</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">cython</td>
+<td class="">sort</td>
+<td class="">5,000,000</td>
+<td class="">0.010587</td>
+<td class="">0.010587</td>
+<td class="">0.000000</td>
+<td class="">0.010587</td>
+<td class="">0.010587</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">dask</td>
+<td class="">aggregate</td>
+<td class="">100,000</td>
+<td class="">0.023926</td>
+<td class="">0.023926</td>
+<td class="">0.000000</td>
+<td class="">0.023926</td>
+<td class="">0.023926</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">dask</td>
+<td class="">aggregate</td>
+<td class="">500,000</td>
+<td class="">0.062305</td>
+<td class="">0.062305</td>
+<td class="">0.000000</td>
+<td class="">0.062305</td>
+<td class="">0.062305</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">dask</td>
+<td class="">aggregate</td>
+<td class="">1,000,000</td>
+<td class="">0.104595</td>
+<td class="">0.104595</td>
+<td class="">0.000000</td>
+<td class="">0.104595</td>
+<td class="">0.104595</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">dask</td>
+<td class="">aggregate</td>
+<td class="">5,000,000</td>
+<td class="">0.481492</td>
+<td class="">0.481492</td>
+<td class="">0.000000</td>
+<td class="">0.481492</td>
+<td class="">0.481492</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">dask</td>
+<td class="">create</td>
+<td class="">100,000</td>
+<td class="">0.012170</td>
+<td class="">0.012170</td>
+<td class="">0.000000</td>
+<td class="">0.012170</td>
+<td class="">0.012170</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">dask</td>
+<td class="">create</td>
+<td class="">500,000</td>
+<td class="">0.048885</td>
+<td class="">0.048885</td>
+<td class="">0.000000</td>
+<td class="">0.048885</td>
+<td class="">0.048885</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">dask</td>
+<td class="">create</td>
+<td class="">1,000,000</td>
+<td class="">0.074547</td>
+<td class="">0.074547</td>
+<td class="">0.000000</td>
+<td class="">0.074547</td>
+<td class="">0.074547</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">dask</td>
+<td class="">create</td>
+<td class="">5,000,000</td>
+<td class="">0.446683</td>
+<td class="">0.446683</td>
+<td class="">0.000000</td>
+<td class="">0.446683</td>
+<td class="">0.446683</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">dask</td>
+<td class="">filter</td>
+<td class="">100,000</td>
+<td class="">0.025988</td>
+<td class="">0.025988</td>
+<td class="">0.000000</td>
+<td class="">0.025988</td>
+<td class="">0.025988</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">dask</td>
+<td class="">filter</td>
+<td class="">500,000</td>
+<td class="">0.077727</td>
+<td class="">0.077727</td>
+<td class="">0.000000</td>
+<td class="">0.077727</td>
+<td class="">0.077727</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">dask</td>
+<td class="">filter</td>
+<td class="">1,000,000</td>
+<td class="">0.129645</td>
+<td class="">0.129645</td>
+<td class="">0.000000</td>
+<td class="">0.129645</td>
+<td class="">0.129645</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">dask</td>
+<td class="">filter</td>
+<td class="">5,000,000</td>
+<td class="">0.659708</td>
+<td class="">0.659708</td>
+<td class="">0.000000</td>
+<td class="">0.659708</td>
+<td class="">0.659708</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">duckdb</td>
+<td class="">aggregate</td>
+<td class="">100,000</td>
+<td class="">0.006178</td>
+<td class="">0.006178</td>
+<td class="">0.000000</td>
+<td class="">0.006178</td>
+<td class="">0.006178</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">duckdb</td>
+<td class="">aggregate</td>
+<td class="">500,000</td>
+<td class="">0.005773</td>
+<td class="">0.005773</td>
+<td class="">0.000000</td>
+<td class="">0.005773</td>
+<td class="">0.005773</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">duckdb</td>
+<td class="">aggregate</td>
+<td class="">1,000,000</td>
+<td class="">0.004647</td>
+<td class="">0.004647</td>
+<td class="">0.000000</td>
+<td class="">0.004647</td>
+<td class="">0.004647</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+<tr>
+<td class="">duckdb</td>
+<td class="">aggregate</td>
+<td class="">5,000,000</td>
+<td class="">0.012700</td>
+<td class="">0.012700</td>
+<td class="">0.000000</td>
+<td class="">0.012700</td>
+<td class="">0.012700</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+<td class="">0.00</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+</body>
+</html>
